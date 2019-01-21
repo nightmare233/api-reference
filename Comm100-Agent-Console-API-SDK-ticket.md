@@ -28,7 +28,7 @@
     },
     contact:
     {
-        id: number, //number
+        id: '', //string
         name: '', //string
         identities:[
             {
@@ -133,7 +133,7 @@
   
   // agent
   const  agent = {
-    id: 1,    // number
+    id: 1,    // string
     email: '', //string
     displayName: '', //string 
     firstName: '', //string
@@ -177,7 +177,7 @@ Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.contact');
 //Only the ID of the contact can be set
 Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', value);
 //Example
-Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', { id: 1 });
+Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', { id: '' });
 ```
 
 ### department assignee
