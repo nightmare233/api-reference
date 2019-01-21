@@ -9,7 +9,7 @@
     subject: '', //string
     agentAssignee: 
     {
-        id: 1, // number
+        id: '', // string
         email: '', //string
         displayName: '', //string 
         firstName: '', //string
@@ -107,7 +107,7 @@
         time: '', //string
         sender: 
         {
-            id: 1, //number
+            id: '', //string
             type:'', //string
             name: '', //string
             email: '', //string   
@@ -133,7 +133,7 @@
   
   // agent
   const  agent = {
-    id: 1,    // string
+    id: '',    // string
     email: '', //string
     displayName: '', //string 
     firstName: '', //string
@@ -194,7 +194,7 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.departmentAssignee
 Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.agentAssignee');
 Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.agentAssignee', value);
 //Example
-Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.agentAssignee', {id: 1 });
+Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.agentAssignee', {id: '' });
 ```
 
 ### priority
