@@ -36,20 +36,20 @@
         {
             "ticket": {
                 "id": 1,
-                "agentAssigneeId": 12,
+                "agentAssigneeId": '',
                 "agentAssignee": {  //included the agent object
-                    "id": 12,
+                    "id": '',
                     //...
                 },
-                "contactId":23
+                "contactId":''
                 "contact": {  //included the contact object
-                    "id": 23,
+                    "id": '',
                     //...
                 },
-                "createdById":34,
+                "createdById": '',
                 "createdByType": "agent",
                 "createdBy": {  //included the agent or contact object according to the createdByType.
-                    "id": 34,
+                    "id": '',
                     //...
                 },
                 "messages":[    //included the messages.
@@ -90,22 +90,22 @@
 | - | - | - | 
 | `id` | integer | id of ticket | 
 | `subject` | string | ticket subject | 
-| `agentAssigneeId` | integer | agent assignee id | 
+| `agentAssigneeId` | string | agent assignee id | 
 | `departmentAssigneeId` | integer | department assignee id | 
-| `contactId` | integer | the contact id | 
+| `contactId` | string | the contact guid string | 
 | `receivedFrom` | string | received email address for email channel | 
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | boolean | if the ticket is read | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | integer | contact id or agent id | 
+| `createdById` | string | contact id or agent id | 
 | `createdByType` |  string | agent or contact or system | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastActivityTime` | datetime | last activity time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
 | `lastRepliedTime` | datetime | last replied time | 
-| `lastRepliedById` | integer | contact id or agent id | 
+| `lastRepliedById` | string | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `hasDraft` | boolean | if has draft | 
 | `tagIds` | integer[] | tag id array | 
@@ -128,7 +128,7 @@
 ### mentioned agent 
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | integer | the agent id of mentioned | 
+| `agentId` | string | the agent id of mentioned | 
 | `isRead`| boolean | if the mentioned ticket is read | 
 | `messageId`| integer| message id| 
 
@@ -141,7 +141,7 @@
 | `htmlBody` | string | html body of message | 
 | `plainBody` | string | plain text body of message | 
 | `quote` | string | quoted content of the message, only for email message | 
-| `senderId`| integer | id of agent or contact | 
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | | 
 | `subject` | string | subject | 
@@ -164,7 +164,7 @@
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
 | `savedTime` | datetime | | 
-| `savedById` | integer | the id of the agent who saved the ticket draft | 
+| `savedById` | string | the id of the agent who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
 ## endpoints 
@@ -217,8 +217,8 @@
 - Parameters 
     - subject: string, ticket subject, required
     - channel: string, `portal`, `email`, required 
-    - contactId: integer, contact id
-    - agentAssigneeId: integer, agent id
+    - contactId: string, contact id
+    - agentAssigneeId: string, agent id
     - departmentAssigneeId: integer, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
@@ -253,8 +253,8 @@
 - Parameters 
     - id: integer, ticket id
     - subject: string, ticket subject
-    - contactId: integer, the contact id or agent id
-    - agentAssigneeId: integer, agent id
+    - contactId: string, the contact id or agent id
+    - agentAssigneeId: string, agent id
     - departmentAssigneeId: integer, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
@@ -270,7 +270,7 @@
     - ids: integer[], ticket id array
     - status, string
     - priority, string
-    - agentAssigneeId, integer
+    - agentAssigneeId, string
     - departmentAssigneeId, integer
     - isRead, boolean
 + Response 
@@ -439,7 +439,7 @@
 | - | - | - |
 | `id` | integer | id of ticket |
 | `subject` | string | subject |
-| `contactId` | integer | id of the contact who submitted the portal ticket |
+| `contactId` | string | id of the contact who submitted the portal ticket |
 | `isClosed` | boolean | if the portal ticket is closed |
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
 | `createdTime` | datetime | create time |
@@ -451,7 +451,7 @@
 | `id` | integer | id of message | 
 | `htmlBody` | string | html body | 
 | `plainBody` | string | plain text body | 
-| `senderId`| integer | id of agent or contact | 
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
 | `attachments` | [attachment](#attachment)[] | attachment array| 
@@ -461,7 +461,7 @@
 `get api/v3/portalTickets/{id}`
 - Parameters
     - id, integer, id
-    - contactId, integer
+    - contactId, string
 - Response
     - portalTicket: [portal ticket](#portal-ticket) 
 - Includes
@@ -474,7 +474,7 @@
 ### List portal tickets
 `get api/v3/portalTickets`
 - Parameters:
-    - contactId, integer, required
+    - contactId, string, required
     - startTime, DateTime
     - endTime, DateTime
 - Response: 
@@ -489,7 +489,7 @@
 `post api/v3/portalTickets`
 - Parameters: 
     - subject: string, subject, required
-    - contactId: integer, id of the contact who submitted the portal ticket
+    - contactId: string, id of the contact who submitted the portal ticket
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - message:  the first portal message
         - htmlBody: string, html body
@@ -516,7 +516,7 @@
 `get api/v3/portalTickets/{id}/messages`
 - Parameters: 
     - id, integer
-    - contactId, integer
+    - contactId, string
 - Response: 
     - messages: [portal ticket message](#portal-ticket-message) list
 - Includes
@@ -529,7 +529,7 @@
  `post api/v3/portalTickets/{id}/messages`
 - Parameters:
     - id: integer
-    - contactId: integer
+    - contactId: string
     - htmlBody: string, html body
     - plainBody: string, plain text
     - attachments: [attachment](#attachment)[], attachment array
@@ -744,7 +744,7 @@
 | `id` | integer | id | 
 | `email` | string | email address |  
 | `type` | string | pop3 or exchange | 
-| `agentAssigneeId` | integer | agent id | 
+| `agentAssigneeId` | string | agent id | 
 | `departmentAssigneeId` | integer | department id | 
 | `isDefault` | boolean | if default email account | 
 
