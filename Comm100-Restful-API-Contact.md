@@ -41,7 +41,7 @@
 - Parameters
     - id: string, guid of the contact
 - Response
-    - [contact object](#contact)
+    - contact: [contact object](#contact)
 
 #### Create a contact
 `post  /api/v3/contacts`
