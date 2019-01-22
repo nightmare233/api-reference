@@ -22,8 +22,8 @@
 | `address` | string | the address of the contact  |
 | `city` | string | the city of the contact  |
 | `stateOrProvince` | string | the state or province of the contact |
-| `country` | string |  the country of the contact |
-| `postcode` | string | the postcode of the contact  |
+| `countryOrRegion` | string |  the country or region of the contact |
+| `zipOrPostalCode` | string | the zip or postal code of the contact  |
 | `createdTime` | datetime | the time the contact was created |
   
 ### identity
